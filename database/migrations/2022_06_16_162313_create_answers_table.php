@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('question_id')->nullable(false)->unsigned()->index();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->string('answer', 255);
-            $table->boolean('introvert_score')->nullable()->default(null)->comment('0 - Not introvert; 1 - Introvert');
+            $table->boolean('introvert_score')->nullable(false)->comment('0 - Not introvert; 1 - Introvert');
             $table->timestamps();
         });
     }
