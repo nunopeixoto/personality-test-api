@@ -17,4 +17,9 @@ class Answer extends Model
         'answer',
         'introvert_score'
     ];
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }
