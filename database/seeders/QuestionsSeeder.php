@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Answer;
 use App\Models\Question;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class QuestionsSeeder extends Seeder
@@ -21,7 +20,6 @@ class QuestionsSeeder extends Seeder
         $this->seedQuestion3();
         $this->seedQuestion4();
         $this->seedQuestion5();
-
     }
 
     private function seedQuestion1()
