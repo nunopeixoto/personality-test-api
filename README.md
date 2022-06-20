@@ -42,6 +42,7 @@ ___
 ## Notes and possible discussion about the assignment
 - For demonstration purposes, I developed a complete CRUD for the "Question" resource and respective tests. (The create, update and delete part can't be used via the UI)  
 - I didn't implement any sort of authentication
+- I didn't made a priority out of general error handling (for example if the API is down)
 - For simplicity, each questionare will only have 5 questions (and I assumed that at least 5 questions will always be in the database)
 - My algorithm to determine the personality trait is stricly binary (each answer only adds 0 or 1 to the score). A better solution would probably have a score between 0-5 for each answer
 - If you wish to test all of the endpoints available in the API [here is a collection that you can import on Postman/Insomnia](https://www.dropbox.com/s/ht90ox4ampl4ts8/Nuno%20Peixoto%20Personality%20Test.postman_collection?dl=0)
