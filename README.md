@@ -1,64 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Personality test challenge
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+The project is divided in two repositories:
+  - [personality-test-api](https://github.com/nunopeixoto/personality-test-api) Laravel 9 <br>
+  - [personality-test](https://github.com/nunopeixoto/personality-test) Angular 13 w/ Material and TailwindCSS
 
-## About Laravel
+## Project setup instructions
+#### Setup personality-test-api
+- Create a MySQL database (for example: personality_test)
+- Clone the repo and make the first-time setup
+```bash
+git clone https://github.com/nunopeixoto/personality-test-api.git
+cd personality-test-api
+composer i
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+cp .env.example .env
+# Make sure you properly fill DB_DATABASE, DB_USERNAME, DB_PASSWORD
+vi .env
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+php artisan key:generate
+php artisan migrate
+php artisan db:seed --class="QuestionsSeeder"
+php artisan test
+php artisan serve
+```
+___
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Setup personality-test
+- If you don't have Angular CLI on your machine, be sure to add it as the first step: `npm install -g @angular/cli`
+- Clone the repo and make the first-time setup
+```bash
+git clone https://github.com/nunopeixoto/personality-test.git
+cd personality-test
+npm install
 
-## Learning Laravel
+npm run start
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+___
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Notes and possible discussion about the assignment
+- For demonstration purposes, I developed a complete CRUD for the "Question" resource and respective tests. (The create, update and delete part can't be used via the UI)  
+- I didn't implement any sort of authentication
+- For simplicity, you will only receive 5 questions (and I assumed that at least 5 questions will always be in the database)
+- My algorithm to determine the personality trait is stricly binary (each answer only adds 0 or 1 to the score). A better solution would probably have a score between 0-5 for each answer
+- If you wish to test all of the endpoints available in the API [here is a collection that you can import on Postman/Insomnia](https://www.dropbox.com/s/ht90ox4ampl4ts8/Nuno%20Peixoto%20Personality%20Test.postman_collection?dl=0)
+___
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Taks covered
+- [x] Landing screen
+- [x] Start personality test
+- [x] Following
+- [x] Dynamic screen, that reads question and answers from a the backend (Just build CRUD, with in memory DB)
+- [x] Finish screen, where you can see your personality trait.
